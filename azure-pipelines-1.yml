@@ -39,12 +39,6 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-
-    - task: PublishPipelineArtifact@1
-      inputs:
-        artifactName: 'manifests'
-        path: 'manifests'
-
     - upload: manifests
       artifact: manifests
 
@@ -66,14 +60,12 @@ stages:
             inputs:
               action: createSecret
               secretName: $(imagePullSecret)
-              namespace: $(k8sNamespace)
               dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
               
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:
               action: deploy
-              namespace: $(k8sNamespace)
               manifests: |
                 $(System.ArtifactsDirectory)/manifests/deployment.yml
                 $(System.ArtifactDirectory)/manifests/service.yml
