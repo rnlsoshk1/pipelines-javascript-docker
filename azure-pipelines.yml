@@ -78,19 +78,19 @@ stages:
                 $(imagePullSecret)
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
-          - task: HelmDeploy@0
-            displayName: Helm package
-            inputs:
-              command: package
-              chartPath: ./test
-          - task: HelmDeploy@0
-            displayName: Helm upgrade
-            inputs:
-              azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-              azureResourceGroup: $(azureResourceGroup)
-              kubernetesCluster: $(kubernetesCluster)
-              command: upgrade
-              chartType: FilePath
-              chartPath: chartmuseum/test-0.1.0.tgz
-              install: true
-              waitForExecution: false
+          # - task: HelmDeploy@0
+          #   displayName: Helm package
+          #   inputs:
+          #     command: package
+          #     chartPath: ./test
+          # - task: HelmDeploy@0
+          #   displayName: Helm upgrade
+          #   inputs:
+          #     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+          #     azureResourceGroup: $(azureResourceGroup)
+          #     kubernetesCluster: $(kubernetesCluster)
+          #     command: upgrade
+          #     chartType: FilePath
+          #     chartPath: chartmuseum/test-0.1.0.tgz
+          #     install: true
+          #     waitForExecution: false
