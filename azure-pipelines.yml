@@ -82,7 +82,7 @@ stages:
             displayName: Helm package
             inputs:
               command: package
-              chartPath: $(Pipeline.Workspace)/test/Chart.yaml
+              chartPath: ./test/Chart.yaml
           - task: HelmDeploy@0
             displayName: Helm upgrade
             inputs:
@@ -91,6 +91,6 @@ stages:
               kubernetesCluster: $(kubernetesCluster)
               command: upgrade
               chartType: FilePath
-              chartPath: $(Pipeline.Workspace)/test-0.1.0.tgz
+              chartPath: chartmuseum/test-0.1.0.tgz
               install: true
               waitForExecution: false
