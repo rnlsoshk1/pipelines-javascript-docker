@@ -17,7 +17,7 @@ variables:
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'daewoo60598502-auth'
-  azureSubscriptionEndpoint: myAKSCluster-default
+  azureSubscriptionEndpoint: subscription
   azureContainerRegistry: daewoo6059.azurecr.io
   azureResourceGroup: myResourceGroup
   kubernetesCluster: myAKSCluster
