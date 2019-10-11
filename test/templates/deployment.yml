@@ -1,0 +1,16 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: rnlsoshkpipelinesjavascriptdocker 
+spec:
+  replicas: {{ .Values.replicas }}
+  template:
+    metadata:
+      labels:
+        app: rnlsoshkpipelinesjavascriptdocker 
+    spec:
+      containers:
+        - name: rnlsoshkpipelinesjavascriptdocker 
+          image: {{ .Values.frontend.image }}:{{ .Values.version }}
+          ports:
+          - containerPort: 8080

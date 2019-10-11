@@ -1,0 +1,7 @@
+# Release-wide Values
+replicas: 1
+version: 'latest'
+
+# Service Specific Values
+frontend:
+  image: daewoo6059.azurecr.io/rnlsoshkpipelinesjavascriptdocker
