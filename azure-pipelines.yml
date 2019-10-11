@@ -82,7 +82,7 @@ stages:
             displayName: Helm package
             inputs:
               command: package
-              chartPath: ./test/Chart.yaml
+              chartPath: ./test
           - task: HelmDeploy@0
             displayName: Helm upgrade
             inputs:
