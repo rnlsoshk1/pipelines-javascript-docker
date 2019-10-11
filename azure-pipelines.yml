@@ -79,10 +79,18 @@ stages:
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
           - task: HelmDeploy@0
-            displayName: Helm list
+            displayName: Helm package
+            inputs:
+              command: package
+              chartPath: $(Pipeline.Workspace)/test/
+          - task: HelmDeploy@0
+            displayName: Helm upgrade
             inputs:
               azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
               azureResourceGroup: $(azureResourceGroup)
               kubernetesCluster: $(kubernetesCluster)
-              command: ls
-              arguments: --all
+              command: upgrade
+              chartType: FilePath
+              chartPath: $(Pipeline.Workspace)/test-0.1.0.tgz
+              install: true
+              waitForExecution: false
